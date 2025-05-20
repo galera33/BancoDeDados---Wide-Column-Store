@@ -1,0 +1,1 @@
+# BancoDeDados---Wide-Column-Store
