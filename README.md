@@ -1,15 +1,9 @@
 # Projeto de Banco de Dados - Wide-Column Store
 
-## Integrantes do Grupo
+## Aluno
 
 - Nome: Juan Caio Paronitti Galera
   - Matrícula: 22.122.067-6
-- Nome: Murilo da Fonseca Guimarães
-  - Matrícula: 22.122.079-1
-- Nome: Rafael Leal Silva
-  - Matrícula: 22.122.029-6
-- Nome: Vitor Lucas Fujita Felício
-  - Matrícula: 22.122.077-5
     
 
 ## Descrição
