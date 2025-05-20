@@ -3,12 +3,14 @@ import random
 import uuid
 import names
 
-def criar_conexao():
-    """Cria e retorna uma conexão com o banco de dados Astra DB."""
-    client = DataAPIClient("AstraCS:qcGkhrxAmIDeYZHgZgMIHhFg:f83b7745d30c14fb467155f49fe241804e57dce5037a94beeec11ba62fd9d676")
-    return client.get_database_by_api_endpoint(
-        "https://48ec3668-9fb4-4091-843d-a3dfa584d39d-us-east-2.apps.astra.datastax.com"
-    )
+from astrapy import DataAPIClient
+
+# Initialize the client
+client = DataAPIClient("YOUR_TOKEN")
+db = client.get_database_by_api_endpoint(
+  "https://7ff40bfd-eabb-48dc-97ad-a901d85495f0-us-east-2.apps.astra.datastax.com"
+)
+
 
 
 # Dados aleatórios gerados
@@ -51,30 +53,29 @@ def distribuir_disciplinas_para_professores(num_professores, disciplinas):
             disciplina_para_professor[disciplina_id] = professor_id
     
     return disciplina_para_professor
-
+# Cria e retorna um mapeamento de IDs para nomes de disciplinas.
 def criar_mapeamento_disciplinas(disciplinas):
-    """Cria e retorna um mapeamento de IDs para nomes de disciplinas."""
     mapeamento = {}
     for i in range(1, len(disciplinas) + 1):
         mapeamento[i] = disciplinas[i-1]
     return mapeamento
 
+# Gera um dicionário de nomes aleatórios para alunos.
 def gerar_nomes_alunos(quantidade):
-    """Gera um dicionário de nomes aleatórios para alunos."""
     nomes = {}
     for aluno_id in range(1, quantidade + 1):
         nomes[aluno_id] = names.get_full_name()
     return nomes
 
+# Gera um dicionário de nomes aleatórios para professores.
 def gerar_nomes_professores(quantidade):
-    """Gera um dicionário de nomes aleatórios para professores."""
     nomes = {}
     for professor_id in range(1, quantidade + 1):
         nomes[professor_id] = names.get_full_name()
     return nomes
 
+# Insere alunos no banco de dados.
 def inserir_alunos(db, nomes_alunos):
-    """Insere alunos no banco de dados."""
     alunos = []
     for aluno_id, nome in nomes_alunos.items():
         alunos.append({
@@ -103,8 +104,8 @@ def inserir_professores_disciplinas(db, nomes_professores, mapeamento_disciplina
         db['professores_disciplinas'].insert_many(professores_disciplinas)
     return professores_disciplinas
 
+# Insere departamentos no banco de dados.
 def inserir_departamentos(db, nomes_professores, num_departamentos=3):
-    """Insere departamentos no banco de dados."""
     departamentos = []
     for departamento_id in range(1, num_departamentos + 1):
         chefe_id = escolha_aleatoria(len(nomes_professores))
@@ -116,8 +117,8 @@ def inserir_departamentos(db, nomes_professores, num_departamentos=3):
     db['departamentos'].insert_many(departamentos)
     return departamentos
 
+# Insere cursos associados a departamentos.
 def inserir_cursos(db, num_departamentos=3, cursos_por_departamento=4):
-    """Insere cursos associados a departamentos."""
     cursos = []
     for departamento_id in range(1, num_departamentos + 1):
         for curso_id in range(1, cursos_por_departamento + 1):
@@ -218,7 +219,6 @@ def inserir_grupos_tcc(db, nomes_alunos, nomes_professores, num_grupos=5):
 
 # Função principal que coordena a execução do programa.
 def principal():
-    db = criar_conexao()
     
     # Preparar dados
     disciplinas = obter_disciplinas()
