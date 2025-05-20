@@ -36,9 +36,9 @@ O projeto de Banco de Dados consiste na criação de um modelo de banco de dados
 - Sempre que você sair do CQL Console será necessário rodar o código abaixo:
   - USE default_keyspace;
 
-- O código do "**item 3:** Listar alunos que já se formaram (foram aprovados em todos os cursos de uma matriz curricular) em um determinado semestre de um ano." está mostrando todos os alunos que se formaram anteriormente ao ano de 2024, caso você queira saber de um ano em específico (Por estar randomizado) você pode realizar a ação a seguir:
+- O código do "**item 3:** Listar alunos que já se formaram (foram aprovados em todos os cursos de uma matriz curricular) em um determinado semestre de um ano." está mostrando todos os alunos que se formaram anteriormente ao ano de 2024, caso você queira saber de um ano em específico (Por estar randomizado) você pode realizar as ações a seguir:
 
  1. Rodar o código do "item3.cql";
  2. Pegar o ID do aluno;
- 3. Rodar o código do "Descobrir_ano_aluno.cql", alterando o valor "WHERE id_aluno = 1;" para o valor do ID do aluno que você quer;
- 4. Pegar o ano do aluno e alterar a data do "item3.cql" para que seja igual a data do ano no qual o aluno se formou.
+ 3. Rodar o código do "Descobrir_Ano_Aluno.cql", alterando o valor "WHERE id_aluno = 1;" para o valor do ID do aluno que você quer;
+ 4. Utilizar o ano da formação do aluno e alterar a data do "item3.cql" para que seja igual a data do ano no qual o aluno se formou.
